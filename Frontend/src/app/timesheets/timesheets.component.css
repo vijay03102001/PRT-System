@@ -1,0 +1,233 @@
+/* Timesheet Component Styling */
+:host {
+    display: block;
+    padding: 20px;
+    margin-left: 260px; /* Space for side navigation */
+    background-color: #e6f2ff; /* Light blue background */
+}
+
+/* Card Section */
+.timesheet-container {
+    padding: 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #040404; /* Themed blue */
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 1.5rem;
+}
+
+/* Form Section */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #010204; /* Darker blue */
+    font-weight: 600;
+}
+
+.form-control {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #020202; /* Focus effect */
+    box-shadow: 0 0 5px rgba(30, 144, 255, 0.3);
+}
+
+/* Submit Button */
+.btn-submit {
+    background-color: #1E90FF; /* Themed blue */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-submit:hover {
+    background-color: #030405; /* Darker blue */
+}
+
+.btn-submit:disabled {
+    background-color: #93c5fd; /* Disabled state */
+    cursor: not-allowed;
+}
+
+/* Table Section */
+.table-container {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #f0f8ff; /* Themed header */
+    color: #080808; /* Blue text */
+    font-weight: 600;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+.actions {
+    display: flex;
+    gap: 8px;
+}
+
+/* Action Buttons */
+.btn-approve {
+    background-color: #22c55e; /* Green */
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-reject {
+    background-color: #ef4444; /* Red */
+    color: white;
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-approve:disabled,
+.btn-reject:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Status Badges */
+.status-badge {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.pending {
+    background-color: #fef3c7; /* Yellow */
+    color: #92400e; /* Dark yellow */
+}
+
+.approved {
+    background-color: #dcfce7; /* Light green */
+    color: #166534; /* Green */
+}
+
+.rejected {
+    background-color: #fee2e2; /* Light red */
+    color: #991b1b; /* Red */
+}
+
+/* Toggle Switch */
+.toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.toggle {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #1E90FF; /* Themed blue */
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.toggle-label {
+    font-weight: 500;
+    color: #4169E1; /* Themed label */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+    :host {
+        margin-left: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    :host {
+        margin-left: 0;
+        padding: 10px;
+    }
+}

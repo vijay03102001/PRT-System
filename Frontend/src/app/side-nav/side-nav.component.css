@@ -1,0 +1,167 @@
+/* Sidebar Component Styles */
+#sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 260px;
+  height: 100vh;
+  background-color: #1E3A8A; /* Navy Blue for sidebar */
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  transition: width 0.3s ease;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+}
+
+.sidebar-title {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Align content to the left */
+  padding: 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  background-color: #1E40AF; /* Slightly lighter blue for title */
+  border-bottom: 1px solid #1C3666;
+  height: 60px; /* Match header height */
+  padding-left: 20px; /* Align with header padding */
+}
+
+.sidebar-title .material-icons-outlined {
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.sidebar-title .material-icons-outlined:hover {
+  transform: scale(1.1);
+  color: #60A5FA; /* Light blue on hover */
+}
+
+.sidebar-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex: 1;
+}
+
+.sidebar-list-item {
+  margin: 10px 0;
+}
+
+.sidebar-list-item a {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px;
+  color: #E0E7FF; /* Light blue text */
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 4px;
+}
+
+.sidebar-list-item a .material-icons-outlined {
+  margin-right: 15px;
+  font-size: 1.5rem;
+}
+
+.sidebar-list-item a:hover,
+.sidebar-list-item a.active {
+  background-color: #1D4ED8; /* Highlight blue */
+  color: #FFFFFF;
+}
+
+.sidebar-responsive {
+  width: 80px; /* Shrink sidebar */
+}
+
+.sidebar-responsive .sidebar-title {
+  justify-content: center;
+}
+
+.sidebar-responsive .sidebar-title .sidebar-brand {
+  display: none;
+}
+
+.sidebar-responsive .sidebar-list-item a span {
+  display: none;
+}
+
+.sidebar-responsive .sidebar-list-item a {
+  justify-content: center;
+  padding: 15px;
+}
+
+@media (max-width: 768px) {
+  #sidebar {
+    width: 80px;
+  }
+
+  #sidebar .sidebar-title {
+    justify-content: center;
+  }
+
+  #sidebar .sidebar-title .sidebar-brand {
+    display: none;
+  }
+
+  #sidebar .sidebar-list-item a span {
+    display: none;
+  }
+
+  #sidebar .sidebar-list-item a {
+    justify-content: center;
+  }
+}
+
+/* Add these styles to your existing sidebar CSS */
+
+/* Submenu Icon */
+.submenu-icon {
+  margin-left: auto;
+  transition: transform 0.3s ease;
+}
+
+.expanded .submenu-icon {
+  transform: rotate(180deg);
+}
+
+/* Submenu Styling */
+.submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.submenu.show {
+  max-height: 500px;
+}
+
+.submenu-item {
+  padding-left: 20px;
+}
+
+.submenu-item a {
+  padding: 8px 20px;
+  font-size: 0.9em;
+  color: #ffffff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.submenu-item a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.submenu-item .material-icons-outlined {
+  font-size: 20px;
+}
+
+/* Adjust main menu item with submenu */
+.sidebar-list-item a {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}

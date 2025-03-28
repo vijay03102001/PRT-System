@@ -1,0 +1,169 @@
+<div class="dashboard-container">
+
+
+
+    <main class="main-container">
+      <!-- Metrics Overview -->
+      <div class="metrics-row">
+        <div class="metric-card">
+          <div class="metric-title">Total Budget</div>
+          <div class="metric-value">{{ dashboardSummary.totalBudget  | currency }}</div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-title">Total PO Value</div>
+          <div class="metric-value">{{ dashboardSummary.totalPOValue | currency }}</div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-title">Utilized Amount</div>
+          <div class="metric-value">{{ dashboardSummary.totalUtilized | currency }}</div>
+        </div>
+
+        <div class="metric-card">
+          <div class="metric-title">Remaining Balance</div>
+          <div class="metric-value">{{ dashboardSummary.totalRemaining | currency }}</div>
+        </div>
+      </div>
+
+      <!-- Charts Section -->
+    <div class="charts-section">
+      <div class="chart-container">
+        <canvas id="budgetChart"></canvas>
+      </div>
+      <div class="chart-container">
+        <canvas id="utilizationChart"></canvas>
+      </div>
+    </div>
+
+
+      <div class="tracker-container">
+        <!-- Filter Section -->
+        <div class="filter-section">
+          <label for="project-select">Filter by Project</label>
+          <select
+            id="project-select"
+            [(ngModel)]="selectedProject"
+            (change)="onProjectSelect($event)"
+            class="project-filter">
+            <option value="">All Projects</option>
+            <option *ngFor="let project of projects" [value]="project.projectName">
+              {{ project.projectName }}
+            </option>
+          </select>
+        </div>
+
+        <!-- Tabs Navigation -->
+        <div class="tabs-navigation">
+          <button
+            [class.active]="activeTab === 'projects'"
+            (click)="setActiveTab('projects')">
+            Projects Overview
+          </button>
+          <button
+            [class.active]="activeTab === 'pos'"
+            (click)="setActiveTab('pos')">
+            Purchase Orders
+          </button>
+        </div>
+
+        <!-- Projects Tab Content -->
+        <div class="tab-content" [class.active]="activeTab === 'projects'">
+          <div class="table-section">
+            <h2>Projects Overview</h2>
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Project Name</th>
+                  <th>Budget</th>
+                  <th>Utilized</th>
+                  <th>Remaining</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let project of filteredProjects">
+                  <td>{{ project.projectName }}</td>
+                  <td>{{ project.projectBudget| currency }}</td>
+                  <td>{{ project.utilizedAmount| currency }}</td>
+                  <td>{{ project.remainingBalance | currency }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- POs Tab Content -->
+        <div class="tab-content" [class.active]="activeTab === 'pos'">
+          <div class="table-section">
+            <h2>Purchase Orders</h2>
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>PO Number</th>
+                  <th>Project</th>
+                  <th>Value</th>
+                  <th>Utilized</th>
+                  <th>Remaining</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let po of filteredPOs">
+                  <td>{{ po.poNumber }}</td>
+                  <td>{{ po.projectId }}</td>
+                  <td>{{ po.value | currency }}</td>
+                  <td>{{ po.poUtilized | currency }}</td>
+                  <td>{{ po.poBalance | currency }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      <!-- Resources Table -->
+      <div class="filter-section">
+        <label for="designation-filter">Filter by Designation</label>
+        <select
+          id="designation-filter"
+          [(ngModel)]="selectedDesignation"
+          (change)="applyDesignationFilter()"
+          class="designation-filter">
+          <option value="">All Designations</option>
+          <option *ngFor="let designation of designations" [value]="designation.designationName">
+            {{ designation.designationName }}
+          </option>
+        </select>
+      </div>
+
+<!-- Resources Table -->
+<div class="table-section" [class.active]="activeTab === 'resource utilization'">
+  <h2>Resource Utilization</h2>
+  <table class="custom-table">
+    <thead>
+      <tr>
+        <th>Resource Name</th>
+        <th>Designation</th>
+        <th>Project</th>
+        <th>PO</th>
+        <th>Total Hours</th>
+        <th>Utilized Hours</th>
+        <th>Total Cost</th>
+        <th>Utilized Cost</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let resource of filteredResources">
+        <td>{{ resource.resourceName }}</td>
+        <td>{{ resource.designationName }}</td>
+        <td>{{ resource.projectName }}</td>
+        <td>{{ resource.poNumber  }}</td>
+        <td>{{ resource.allocatedHours }}</td>
+        <td>{{ resource.totalHoursWorked}}</td>
+        <td>{{ resource.allocatedCost | currency }}</td>
+        <td>{{ resource.totalCost | currency }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</div>
+    </main>
+  </div>

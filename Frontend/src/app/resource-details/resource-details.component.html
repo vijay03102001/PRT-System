@@ -1,0 +1,137 @@
+<div class="main-container">
+  <div class="resources-container">
+    <!-- Add/Edit Resource Modal -->
+    <div class="modal" *ngIf="showModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">{{editMode ? 'Edit' : 'Add New'}} Resource</h5>
+          </div>
+          <div class="modal-body">
+            <form [formGroup]="resourceForm" (ngSubmit)="onSubmit()">
+              <div class="form-group">
+                <label for="resourceName">Resource Name</label>
+                <input
+                  type="text"
+                  id="resourceName"
+                  class="form-control"
+                  formControlName="resourceName"
+                  placeholder="Enter resource name"
+                  required
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="employeeId">Employee ID</label>
+                <input
+                  type="text"
+                  id="employeeId"
+                  class="form-control"
+                  formControlName="employeeId"
+                  placeholder="Enter employee ID"
+                  required
+                >
+              </div>
+
+              <div class="form-group">
+                <label for="designation">Designation</label>
+                <select
+                  id="designation"
+                  class="form-control"
+                  formControlName="designationName"
+                >
+                <option value="">Deveopler</option>
+                <option *ngFor="let designation of designations" [value]="designation.designationName">
+                  {{designation.designationName}}
+                </option>
+              </select>
+            </div>
+
+              <div class="form-group">
+                <label for="contactDetails">Contact Details</label>
+                <input
+                  type="text"
+                  id="contactDetails"
+                  class="form-control"
+                  formControlName="contactDetails"
+                  placeholder="Enter contact details"
+                  required
+                >
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              (click)="closeModal()"
+            >
+              Close
+            </button>
+            <button
+              type="submit"
+              class="btn btn-primary"
+              [disabled]="!resourceForm.valid"
+              (click)="onSubmit()"
+            >
+              {{editMode ? 'Update' : 'Save'}} Resource
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Resource List -->
+    <div class="header-container">
+      <h2>Resource List</h2>
+      <button
+        class="btn btn-primary"
+        (click)="openModal()"
+      >
+         New Resource
+      </button>
+    </div>
+
+    <table class="utilization-table">
+      <thead>
+        <tr>
+          <th>Resource Name</th>
+          <th>Employee ID</th>
+          <th>Designation</th>
+          <th>Contact Details</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let resource of resources">
+          <td>{{resource.resourceName}}</td>
+          <td>{{resource.employeeId}}</td>
+          <td>{{resource.designationName}}</td>
+          <td>{{resource.contactDetails}}</td>
+          <td class="actions">
+            <button class="btn-edit" (click)="editResource(resource)">
+              <span class="material-icons-outlined">edit</span>
+              <span>Edit</span>
+            </button>
+            <button class="btn-delete" (click)="confirmDeleteResource(resource.resourceId)">
+              <span class="material-icons-outlined">delete</span>
+              <span>Delete</span>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Confirmation Dialog -->
+<div class="modal" *ngIf="showConfirmDialog">
+  <div class="modal-content confirmation-dialog">
+    <h2>Confirm Delete</h2>
+    <p>Are you sure you want to delete this resource?</p>
+    <div class="form-buttons">
+      <button type="button" class="btn-secondary" (click)="cancelDelete()">Cancel</button>
+      <button type="button" class="btn-delete" (click)="deleteResource()">Delete</button>
+    </div>
+  </div>
+</div>

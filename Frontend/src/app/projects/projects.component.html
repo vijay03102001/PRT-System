@@ -1,0 +1,154 @@
+<div class="container">
+  <!-- Projects List View -->
+  <div class="projects-list" *ngIf="!selectedProject">
+    <div class="header">
+      <h1>Projects</h1>
+      <button class="btn-primary" (click)="openNewProjectModal()">New Project</button>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Project Name</th>
+          <th>Total Budget</th>
+          <th>POs Associated</th>
+          <th>Utilized Amount</th>
+          <th>Remaining Balance</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let project of projects">
+          <td>{{project.projectName}}</td>
+          <td>{{project.projectBudget | currency}}</td>
+          <td>{{project.totalPOs}}</td>
+          <td>{{project.utilizedAmount | currency}}</td>
+          <td>{{project.remainingBalance | currency}}</td>
+          <td>
+            <button (click)="editProject(project)">Edit</button>
+            <button (click)="viewProject(project)">View</button>
+            <button (click)="deleteProject(project.projectId)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Project Details View -->
+  <div class="project-details" *ngIf="selectedProject">
+    <div class="header">
+      <button class="back-button" (click)="backToList()">← Back to Projects</button>
+    </div>
+
+    <div class="details-container">
+      <!-- Left side - Project Information -->
+      <div class="details-left">
+        <h2>Project Details</h2>
+        <div class="info-group">
+          <label>Project Name</label>
+          <div>{{selectedProject.projectName}}</div>
+        </div>
+        <div class="info-group">
+          <label>Description</label>
+          <div>{{selectedProject.projectDescription}}</div>
+        </div>
+        <div class="info-group">
+          <label>Total Budget</label>
+          <div>{{selectedProject.projectBudget | currency}}</div>
+        </div>
+        <div class="info-group">
+          <label>Total Utilized Amount</label>
+          <div>{{selectedProject.utilizedAmount | currency}}</div>
+        </div>
+        <div class="info-group">
+          <label>Remaining Balance</label>
+          <div>{{selectedProject.remainingBalance | currency}}</div>
+        </div>
+      </div>
+
+      <!-- Right side - Budget Utilization Chart -->
+      <div class="details-right">
+        <h2>Budget Utilization</h2>
+        <canvas #budgetChart></canvas>
+      </div>
+    </div>
+
+    <!-- Purchase Orders Section -->
+    <div class="po-section">
+      <div class="header">
+        <h2>Purchase Orders</h2>
+        <button class="btn-primary" (click)="openNewPOModal()">Add PO</button>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>PO Number</th>
+            <th>PO Value</th>
+            <th>Utilized Amount</th>
+            <th>Remaining Balance</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let po of purchaseOrders">
+            <td>{{po.poNumber}}</td>
+            <td>{{po.value | currency}}</td>
+            <td>{{po.poUtilized | currency}}</td>
+            <td>{{po.poBalance | currency}}</td>
+            <td>
+              <button (click)="editPO(po)">Edit</button>
+              <button (click)="deletePO(po.poId)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Project Modal -->
+  <div class="modal" *ngIf="showProjectModal">
+    <div class="modal-content">
+      <h2>{{editingProject ? 'Edit Project' : 'New Project'}}</h2>
+      <form [formGroup]="projectForm" (ngSubmit)="saveProject()">
+        <div class="form-group">
+          <label>Project Name</label>
+          <input formControlName="projectName" type="text">
+        </div>
+        <div class="form-group">
+          <label>Description</label>
+          <textarea formControlName="projectDescription"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Total Budget</label>
+          <input formControlName="projectBudget" type="number">
+        </div>
+        <div class="form-buttons">
+          <button type="button" (click)="closeProjectModal()">Cancel</button>
+          <button type="submit">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- PO Modal -->
+  <div class="modal" *ngIf="showPOModal">
+    <div class="modal-content">
+      <h2>{{editingPO ? 'Edit PO' : 'New PO'}}</h2>
+      <form [formGroup]="poForm" (ngSubmit)="savePO()">
+        <div class="form-group">
+          <label>PO Number</label>
+          <input formControlName="poNumber" type="text">
+        </div>
+        <div class="form-group">
+          <label>PO Value</label>
+          <input formControlName="value" type="number">
+        </div>
+        <div class="form-buttons">
+          <button type="button" (click)="closePOModal()">Cancel</button>
+          <button type="submit">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

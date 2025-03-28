@@ -1,0 +1,141 @@
+<!-- resource-cost.component.html -->
+<div class="resource-cost-container">
+    <!-- Main Card -->
+    <div class="card">
+      <div class="header">
+        <h2>Designation Cost Management</h2>
+        <button class="btn-primary" (click)="openDesignationModal()">
+          <span class="material-icons-outlined">add</span>
+          New Designation
+        </button>
+      </div>
+  
+      <!-- Designation Cost Table -->
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Designation Name</th>
+              <th>Cost Per Hour</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let designation of designations">
+              <td>{{designation.designationName}}</td>
+              <td>{{designation.costPerHour | currency}}</td>
+              <td class="actions">
+                <button class="btn-edit" (click)="editDesignation(designation)">
+                  <span class="material-icons-outlined">edit</span>
+                  <span>Edit</span>
+                </button>
+                <button class="btn-delete" (click)="deleteDesignation(designation.designationId)">
+                  <span class="material-icons-outlined">delete</span>
+                  <span>Delete</span>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+    <!-- Audit Log Card -->
+    <div class="card">
+      <div class="header">
+        <h2>Cost Audit Logs</h2>
+        <div class="filter-container">
+          <div class="form-group">
+            <input type="text" 
+                   placeholder="Search Designation" 
+                   [(ngModel)]="filters.designation"
+                   (input)="applyFilters()">
+          </div>
+          <div class="form-group">
+            <input type="date" 
+                   [(ngModel)]="filters.date"
+                   (change)="applyFilters()">
+          </div>
+        </div>
+      </div>
+  
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Designation</th>
+              <th>Old Cost</th>
+              <th>New Cost</th>
+              <th>Change Date</th>
+              <th>Modified By Name</th>
+              <th>Modified By Designation</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let log of auditLogs">
+              <td>{{log.designationName}}</td>
+              <td>{{log.oldCost | currency}}</td>
+              <td>{{log.newCost | currency}}</td>
+              <td>{{log.updatedAt | date:'medium'}}</td>
+              <td>{{log.updatedByName}}</td>
+              <td>{{log.updatedByDesignation}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+<!-- Add/Edit Designation Modal -->
+<div class="modal" *ngIf="showModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>{{editingDesignation ? 'Edit Designation' : 'New Designation'}}</h2>
+    </div>
+
+    <form [formGroup]="designationForm" (ngSubmit)="saveDesignation()">
+      <div class="form-group">
+        <label>Designation Name</label>
+        <input type="text" formControlName="name" [class.error]="showError('name')">
+        <div class="error-message" *ngIf="showError('name')">
+          <span *ngIf="designationForm.get('name')?.errors?.['required']">
+            Designation name is required
+          </span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Daily Cost</label>
+        <input type="number" formControlName="dailyCost" [class.error]="showError('dailyCost')">
+        <div class="error-message" *ngIf="showError('dailyCost')">
+          <span *ngIf="designationForm.get('dailyCost')?.errors?.['required']">
+            Daily cost is required
+          </span>
+          <span *ngIf="designationForm.get('dailyCost')?.errors?.['min']">
+            Daily cost must be greater than 0
+          </span>
+        </div>
+      </div>
+
+      <div class="form-buttons">
+        <button type="button" class="btn-secondary" (click)="closeModal()">Cancel</button>
+        <button type="submit" class="btn-primary" [disabled]="designationForm.invalid || isSubmitting">
+          {{editingDesignation ? 'Update' : 'Save'}}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+  
+  <!-- Confirmation Dialog -->
+  <div class="modal" *ngIf="showConfirmDialog">
+    <div class="modal-content confirmation-dialog">
+      <h2>Confirm Delete</h2>
+      <p>Are you sure you want to delete this designation?</p>
+      <div class="form-buttons">
+        <button type="button" class="btn-secondary" (click)="cancelDelete()">Cancel</button>
+        <button type="button" class="btn-delete" (click)="confirmDelete()">Delete</button>
+      </div>
+    </div>
+  </div>

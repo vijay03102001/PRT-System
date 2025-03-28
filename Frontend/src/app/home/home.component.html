@@ -1,0 +1,35 @@
+<!-- src/app/home/home.component.html -->
+<div class="home-container">
+  <div class="home-content">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="logo-circle">
+        <img src="./assets/images/logo.jpeg" alt="Logo" class="logo">
+      </div>
+      <nav class="navbar">
+        <ul>
+          <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a></li>
+          <li><a routerLink="/login" routerLinkActive="active">Login</a></li>
+          <li><a routerLink="/about" routerLinkActive="active">About</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="home-text">
+        <h1>Project Management System</h1>
+        <p>Streamline Your Projects, Optimize Your Resources</p>
+        <button class="dashboard-btn" (click)="navigateToDashboard()">Go to Dashboard</button>
+      </div>
+    </section>
+
+    <!-- Info Section -->
+    <section class="info-section">
+      <div class="info-content">
+        <p>Our project management system empowers teams to collaborate effectively, track progress in real-time, and deliver results with confidence. Experience a new way of managing projects with our intuitive and powerful platform.</p>
+      </div>
+    </section>
+  </div>
+</div>

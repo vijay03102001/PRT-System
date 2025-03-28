@@ -1,0 +1,127 @@
+<div class="main-container">
+    <div class="resources-container">
+      <!-- Resource Allocation Form -->
+      <div class="allocation-section">
+        <h2>Resource Allocation</h2>
+        <form [formGroup]="resourceAllocationForm" (ngSubmit)="onSubmit()">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="project">Project</label>
+              <select id="project" formControlName="project">
+                <option *ngFor="let project of projects" [value]="project.projectId">
+                  {{project.projectName}}
+                </option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="resource">Resource</label>
+              <select id="resource" formControlName="resource">
+                <option *ngFor="let resource of resources" [value]="resource.resourceId">
+                  {{resource.resourceName}} ({{resource.designationName}})
+                </option>
+              </select>
+            </div>
+          </div>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label for="purchaseOrder">Purchase Order</label>
+              <select id="purchaseOrder" formControlName="purchaseOrder">
+                <option *ngFor="let po of purchaseOrders" [value]="po.poId">
+                  {{po.poNumber}}
+                </option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="allocatedHours">Allocate Hours</label>
+              <input 
+                type="number" 
+                id="allocatedHours" 
+                formControlName="allocatedHours" 
+                min="0"
+              >
+            </div>
+          </div>
+          
+          <div class="form-actions">
+            <button 
+              type="submit" 
+              class="btn btn-primary"
+              [disabled]="!resourceAllocationForm.valid"
+            >
+              Allocate Resource
+            </button>
+          </div>
+        </form>
+      </div>
+  
+      <!-- Utilization Table Section -->
+      <div class="utilization-section">
+        <h2>Resource Utilization</h2>
+        
+        <!-- Filters -->
+        <div class="filters">
+          <div class="filter-group">
+            <label for="projectFilter">Project Filter</label>
+            <select 
+                id="projectFilter" 
+                (change)="applyProjectFilter($event)"
+                >
+                <option value="">All Projects</option>
+                <option 
+                    *ngFor="let project of projects" 
+                    [value]="project.projectId"
+                >
+                    {{project.projectName}}
+                </option>
+                </select>
+
+                <select 
+                id="poFilter" 
+                (change)="applyPOFilter($event)"
+                >
+                <option value="">All POs</option>
+                <option 
+                    *ngFor="let po of purchaseOrders" 
+                    [value]="po.poId"
+                >
+                    {{po.poNumber}}
+                </option>
+                </select>
+          </div>
+          
+          <button 
+            class="btn btn-secondary" 
+            (click)="resetFilters()">
+            Reset Filters
+          </button>
+        </div>
+  
+        <!-- Utilization Table -->
+        <table class="utilization-table">
+          <thead>
+            <tr>
+              <th>Resource Name</th>
+              <th>Designation</th>
+              <th>Total Hours</th>
+              <th>Utilized Hours</th>
+              <th>Total Cost</th>
+              <th>Utilized Cost</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of utilizationData">
+              <td>{{data.resourceName}}</td>
+              <td>{{data.designationName}}</td>
+              <td>{{data.allocatedHours}}</td>
+              <td>{{data.totalHoursWorked}}</td>
+              <td>${{data.allocatedCost}}</td>
+              <td>${{data.totalCost}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

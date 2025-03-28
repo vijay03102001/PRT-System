@@ -1,0 +1,57 @@
+<!-- Sidebar -->
+<aside id="sidebar" [ngClass]="sidebarResponsive ? 'sidebar-responsive' : ''">
+  <div class="sidebar-title">
+    <div class="sidebar-brand">
+      <span class="material-icons-outlined">dashboard</span> PRT System
+    </div>
+    <span class="material-icons-outlined" (click)="toggleSidebar()">close</span>
+  </div>
+  
+  <ul class="sidebar-list">
+    <li class="sidebar-list-item">
+      <a routerLink="/dashboard" routerLinkActive="active">
+        <span class="material-icons-outlined">dashboard</span> Dashboard
+      </a>
+    </li>
+    <li class="sidebar-list-item">
+      <a routerLink="/projects" routerLinkActive="active">
+        <span class="material-icons-outlined">category</span> Projects
+      </a>
+    </li>
+    <li class="sidebar-list-item">
+      <a (click)="toggleResourceMenu()" 
+       [class.expanded]="isResourceMenuOpen">
+       <span class="material-icons-outlined">groups</span> Resources
+      <span class="material-icons-outlined submenu-icon">expand_more</span>
+     </a>
+      <ul class="submenu" [class.show]="isResourceMenuOpen">
+        <li class="submenu-item">
+          <a routerLink="/resource-cost" routerLinkActive="active">
+            <span class="material-icons-outlined">attach_money</span> Resource Cost
+          </a>
+        </li>
+        <li class="submenu-item">
+          <a routerLink="/resource-details" routerLinkActive="active">
+            <span class="material-icons-outlined">person</span> Details
+          </a>
+        </li>
+        <li class="submenu-item">
+          <a routerLink="/allocation-utilization" routerLinkActive="active">
+            <span class="material-icons-outlined">assessment</span> Allocation & Utilization
+          </a>
+        </li>
+      </ul>
+    </li>
+    <li class="sidebar-list-item">
+      <a routerLink="/timesheets" routerLinkActive="active">
+        <span class="material-icons-outlined">fact_check</span> Timesheets
+      </a>
+    </li>
+    <li class="sidebar-list-item">
+      <a routerLink="/reports" routerLinkActive="active">
+        <span class="material-icons-outlined">poll</span> Reports
+      </a>
+    </li>
+  </ul>
+</aside>
+<!-- End Sidebar -->

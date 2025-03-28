@@ -1,0 +1,49 @@
+<div class="reports-container">
+    <header class="reports-header">
+      <h1>Reports</h1>
+    </header>
+
+    <section class="report-actions">
+      <div class="export-options">
+        <button (click)="exportToExcel()" class="btn-secondary">
+          Export to Excel
+        </button>
+        <div class="export-options">
+          <button (click)="exportToExcel()" class="btn-secondary">
+            Export to Pdf
+          </button>
+        </div>
+      </div>
+    </section>
+
+
+    <div class="report-results">
+      <div class="detailed-report">
+        <h2>Detailed PO Breakdown</h2>
+        <table class="report-table">
+              <thead>
+                <tr>
+                  <th>PO Number</th>
+                  <th>Project Name</th>
+                  <th>Resource Name</th>
+                  <th>Designation Name</th>
+                  <th>Value</th>
+                  <th>PO Utilized</th>
+                  <th>PO Balance</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let report of detailedReports">
+                  <td>{{ report.poNumber }}</td>
+                  <td>{{ report.projectName }}</td>
+                  <td>{{ report.resourceName }}</td>
+                  <td>{{ report.designationName }}</td>
+                  <td>{{ report.value | currency }}</td>
+                  <td>{{ report.poUtilized | currency }}</td>
+                  <td>{{ report.poBalance | currency }}</td>
+                </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+  </div>

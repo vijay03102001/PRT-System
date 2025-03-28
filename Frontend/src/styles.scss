@@ -1,0 +1,77 @@
+// Import Angular Material first
+@use '@angular/material' as mat;
+
+
+/* Color Palette */
+:root {
+  --primary-color: #20B2AA; // Light Sea Green
+  --secondary-color: #008B8B; // Dark Cyan
+
+  // Background Colors
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F4F7FA;
+
+  // Text Colors
+  --text-primary: #2C3E50;
+  --text-secondary: #7F8C8D;
+
+  // Accent Colors
+  --accent-blue: #2962FF;
+  --accent-orange: #FF6D00;
+  --accent-green: #2E7D32;
+  --accent-red: #D50000;
+
+  // Transition
+  --transition-speed: 0.3s;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+// Responsive Typography
+html {
+  font-size: 16px;
+
+  @media screen and (max-width: 1200px) {
+    font-size: 15px;
+  }
+
+  @media screen and (max-width: 768px) {
+    font-size: 14px;
+  }
+}
+
+// Utility Classes
+.text-primary { color: var(--primary-color); }
+.text-secondary { color: var(--text-secondary); }
+
+// Material Icons
+.material-icons-outlined {
+  font-size: 24px;
+  vertical-align: middle;
+}
+
+/* Global Styles for Snackbars */
+.success-snackbar {
+  background: #4caf50 !important;
+  color: white !important;
+}
+
+.error-snackbar {
+  background: #f44336 !important;
+  color: white !important;
+}
+
+.mat-snack-bar-action {
+  color: white !important;
+}

@@ -1,0 +1,244 @@
+/* Dashboard Container */
+.dashboard-container {
+    width: calc(100% - 260px);
+    margin-left: 260px;
+    min-height: calc(100vh - 60px);
+    background-color: #e6f2ff;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.main-container {
+    background-color: white;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Metrics Row Styling */
+.metrics-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.metric-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+
+    &:nth-child(1) {
+        background: linear-gradient(135deg, #0d0d0d 0%, #f63008 100%);
+    }
+
+    &:nth-child(2) {
+        background: linear-gradient(135deg, #04c030 0%, #050805 100%);
+    }
+
+    &:nth-child(3) {
+        background: linear-gradient(135deg, #0093E9 0%, #0093E9 100%);
+    }
+
+    &:nth-child(4) {
+        background: linear-gradient(135deg, #0a0a0a 0%, #170365 100%);
+    }
+
+    &:hover {
+        transform: translateY(-5px);
+    }
+
+    .metric-title {
+        color: white;
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        opacity: 0.9;
+    }
+
+    .metric-value {
+        color: white;
+        font-size: 1.75rem;
+        font-weight: 700;
+    }
+}
+
+.charts-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 24px;
+    margin-bottom: 24px;
+
+    .chart-container {
+      background: white;
+      padding: 24px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0, 95, 115, 0.1);
+      height: 350px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 95, 115, 0.15);
+      }
+
+      canvas {
+        max-height: 100%;
+      }
+    }
+  }
+
+/* Filter Section */
+.filter-section {
+    margin-bottom: 2rem;
+
+    label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #040405;
+        font-weight: 600;
+    }
+
+    select {
+        padding: 0.75rem;
+        border: 1px solid #E0E0E0;
+        border-radius: 4px;
+        width: 200px;
+        outline: none;
+        transition: all 0.3s ease;
+
+        &:focus {
+            border-color: #1E90FF;
+            box-shadow: 0 0 5px rgba(30, 144, 255, 0.3);
+        }
+    }
+}
+
+/* Table Section */
+.table-section {
+    margin-bottom: 2rem;
+    background-color: #f9fcff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    border: 1px solid #e6f2ff;
+
+    h2 {
+        color: #060606;
+        margin-bottom: 1.5rem;
+        border-bottom: 2px solid #f0f0f0;
+        padding-bottom: 0.5rem;
+    }
+}
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+
+    thead {
+        background-color: #f0f8ff;
+    }
+
+    th {
+        padding: 1rem;
+        text-align: left;
+        color: #010101;
+        border-bottom: 2px solid #E0E0E0;
+        font-weight: 600;
+    }
+
+    tbody tr {
+        &:hover {
+            background-color: #f5f5f5;
+        }
+    }
+
+    td {
+        padding: 1rem;
+        border-bottom: 1px solid #E0E0E0;
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+    .dashboard-container {
+        width: calc(100% - 200px);
+        margin-left: 200px;
+    }
+
+    .metrics-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .chart-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard-container {
+        width: 100%;
+        margin-left: 0;
+        padding: 10px;
+    }
+
+    .metrics-row {
+        grid-template-columns: 1fr;
+    }
+
+    .custom-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
+// tabs
+
+.tracker-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .tabs-navigation {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #94D2BD;
+
+    button {
+        padding: 12px 24px;
+        border: none;
+        background: none;
+        cursor: pointer;
+        margin-right: 16px;
+        font-weight: 500;
+        color: #005F73;
+        transition: all 0.2s ease;
+
+      &.active {
+        color: #0A9396;
+        border-bottom: 2px solid #0A9396;
+      }
+
+      &:hover {
+        color: #94D2BD;
+      }
+    }
+  }
+
+  .tab-content {
+    display: none;
+
+    &.active {
+      display: block;
+    }
+  }
+
+  .table-section {
+    h2 {
+      margin-bottom: 15px;
+    }
+  }
+

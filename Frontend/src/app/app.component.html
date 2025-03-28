@@ -1,0 +1,4 @@
+<div *ngIf="showSidebar">
+  <app-side-nav></app-side-nav> <!-- Only show layout when NOT on login page -->
+</div>
+<router-outlet *ngIf="!showSidebar"></router-outlet> <!-- Directly load login page -->

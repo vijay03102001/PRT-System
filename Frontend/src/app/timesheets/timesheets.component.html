@@ -1,0 +1,104 @@
+<div class="timesheet-container">
+  <div class="timesheet-entry card">
+    <h2>Timesheet Entry</h2>
+    <form [formGroup]="timesheetForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="date">Date</label>
+          <input type="date" id="date" formControlName="date" class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="resource">Resource Name</label>
+          <select id="resource" formControlName="resource" class="form-control">
+            <option value="">Select Resource</option>
+            <option *ngFor="let resource of resources" [value]="resource.resourceId">{{ resource.resourceName }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="project">Project</label>
+          <select id="project" formControlName="project" class="form-control">
+            <option value="">Select Project</option>
+            <option *ngFor="let project of projects" [value]="project.projectId">{{ project.projectName }}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="purchaseOrder">PO</label>
+          <select id="purchaseOrder" formControlName="purchaseOrder" class="form-control">
+            <option value="">Select PO</option>
+            <option *ngFor="let purchaseOrder of purchaseOrders" [value]="purchaseOrder.poId">{{ purchaseOrder.poNumber }}</option>
+        </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="hours">Hours Worked</label>
+          <input type="number" id="hours" formControlName="hoursWorked" class="form-control" min="1">
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="!timesheetForm.valid || isFrozen" class="btn-submit">
+        SUBMIT
+      </button>
+    </form>
+  </div>
+
+  <div class="approvals-section card">
+    <h2>Timesheet Approvals</h2>
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Resource</th>
+            <th>Project</th>
+            <th>PO Number</th>
+            <th>Hours</th>
+            <th>Cost</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let timesheet of pendingTimesheets">
+            <td>{{timesheet.workDate}}</td>
+            <td>{{timesheet.resourceName}}</td>
+            <td>{{timesheet.projectName}}</td>
+            <td>{{timesheet.poNumber}}</td>
+            <td>{{timesheet.hoursWorked}}</td>
+            <td>${{timesheet.cost}}</td>
+            <td>
+              <span class="status-badge" [ngClass]="timesheet.status.toLowerCase()">
+                {{timesheet.status}}
+              </span>
+            </td>
+            <td class="actions">
+              <button class="btn-approve" (click)="approveTimesheet(timesheet.timesheetId!)" [disabled]="isFrozen">
+                Approve
+              </button>
+              <button class="btn-reject" (click)="rejectTimesheet(timesheet.timesheetId!)" [disabled]="isFrozen">
+                Reject
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="freeze-control card">
+    <h2>Timesheet Controls</h2>
+    <div class="toggle-container">
+      <label class="toggle">
+        <input type="checkbox" [checked]="isFrozen" (change)="toggleFreeze()">
+        <span class="slider"></span>
+      </label>
+      <span class="toggle-label">{{ isFrozen ? 'Unfreeze Timesheets' : 'Freeze Timesheets' }}</span>
+    </div>
+  </div>
+</div>

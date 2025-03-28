@@ -1,0 +1,269 @@
+/* Resources Component Styling */
+.md-button {
+    padding: 0 6px 0 6px;
+    margin: 6px 8px 6px 8px;
+    min-width: 88px;
+    border-radius: 3px;
+    font-size: 14px;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: none;
+    outline: none;
+  }
+/* Button Base Styles */
+.btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    outline: none;
+  }
+
+  /* Secondary Button (Reset Filters) */
+  .btn-secondary {
+    background-color: #6c757d; /* Muted gray */
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-secondary:hover {
+    background-color: #28a745; /* Green on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  }
+
+  .btn-secondary:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Primary Button (Allocate Resource) */
+  .btn-primary {
+    background-color: #007bff; /* Bootstrap blue */
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .btn-primary:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+  }
+
+  .btn-primary:active {
+    transform: translateY(1px);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Disabled State */
+  .btn-primary:disabled {
+    background-color: #6c757d;
+    color: #e9ecef;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+:host {
+    display: block;
+    width: calc(100% - 260px);
+    margin-left: 260px;
+    min-height: calc(100vh - 60px);
+    background-color: #e6f2ff;
+    padding: 20px;
+}
+
+.resources-container {
+    background-color: white;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Allocation Section Styles */
+.allocation-section {
+    background-color: #f9fcff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    border: 1px solid #e6f2ff;
+}
+
+.allocation-section h2 {
+    color: #000305;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 0.5rem;
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 0.5rem;
+    color: #010101;
+    font-weight: 600;
+}
+
+.form-group select,
+.form-group input {
+    padding: 0.75rem;
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.form-group select:focus,
+.form-group input:focus {
+    border-color: #000306;
+    box-shadow: 0 0 5px rgba(30, 144, 255, 0.3);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+
+/* Utilization Section Styles */
+
+.utilization-section {
+    background-color: #f9fcff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    border: 1px solid #e6f2ff;
+}
+
+.utilization-section h2 {
+    color: #000203;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 0.5rem;
+}
+
+.utilization-filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 1.5rem;
+}
+.filters {
+    display: flex;
+    justify-content: space-between; /* Ensures filter group stays on the left and the button moves to the right */
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.filters button {
+    margin-left: auto; /* Push the button to the far right */
+}
+
+.filter-group label {
+    margin-bottom: 0.5rem;
+    color: #000105;
+    font-weight: 600;
+}
+
+.filter-group select {
+    padding: 0.75rem;
+    border: 1px solid #E0E0E0;
+    border-radius: 4px;
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.filter-group select:focus {
+    border-color: #050505;
+    box-shadow: 0 0 5px rgba(30, 144, 255, 0.3);
+}
+.utilization-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1rem;
+}
+.form-actions, .utilization-actions {
+    display: flex;
+    justify-content: flex-end; /* Align all buttons to the right */
+    gap: 10px; /* Add spacing between buttons */
+}
+
+.utilization-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.utilization-table thead {
+    background-color: #f0f8ff;
+}
+
+.utilization-table th {
+    padding: 1rem;
+    text-align: left;
+    color: #000305;
+    border-bottom: 2px solid #E0E0E0;
+}
+
+.utilization-table tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+.utilization-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #E0E0E0;
+}
+
+
+/* Responsive Adjustments */
+@media (max-width: 1200px) {
+    :host {
+        width: calc(100% - 200px);
+        margin-left: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    :host {
+        width: 100%;
+        margin-left: 0;
+        padding: 10px;
+    }
+
+    .form-row {
+        flex-direction: column;
+    }
+
+    .utilization-filters {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .filter-group {
+        width: 100%;
+    }
+}
+
+
