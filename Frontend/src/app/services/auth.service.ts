@@ -7,7 +7,7 @@ import { LoginRequest, AuthResponse } from '../models/auth.models';
   providedIn: 'any'
 })
 export class AuthService {
-  private readonly API_URL = 'http://localhost:8080/api/auth';
+  private readonly API_URL = 'http://localhost:4200/api/auth';
   private isAuthenticatedSubject = new BehaviorSubject<boolean>(false);
   authService: any;
 

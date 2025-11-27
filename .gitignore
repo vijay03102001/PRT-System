@@ -1,0 +1,22 @@
+# Maven / Java
+/target/
+*.log
+*.class
+*.jar
+*.war
+*.iml
+.idea/
+
+# Node / Angular
+/Frontend/node_modules/
+/Frontend/dist/
+/Frontend/.angular/
+npm-debug.log
+package-lock.json
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db

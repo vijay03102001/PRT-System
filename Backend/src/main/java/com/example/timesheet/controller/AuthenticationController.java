@@ -1,6 +1,5 @@
 package com.example.timesheet.controller;
 
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,12 +14,12 @@ import com.example.timesheet.service.AuthenticationService;
 
 import lombok.RequiredArgsConstructor;
 
-
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
 public class AuthenticationController {
+
     private final AuthenticationService authenticationService;
 
     @PostMapping("/register")
@@ -37,6 +36,3 @@ public class AuthenticationController {
         return ResponseEntity.ok(authenticationService.authenticate(request));
     }
 }
-
-
-
