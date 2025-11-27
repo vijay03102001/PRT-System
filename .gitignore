@@ -1,5 +1,5 @@
 # Maven / Java
-/target/
+/target
 *.log
 *.class
 *.jar
@@ -8,14 +8,14 @@
 .idea/
 
 # Node / Angular
-/Frontend/node_modules/
+/Frontend/node_modules
 /Frontend/dist/
-/Frontend/.angular/
+/Frontend/.angular
 npm-debug.log
 package-lock.json
 
 # VS Code
-.vscode/
+.vscode
 
 # OS files
 .DS_Store
